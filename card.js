@@ -11,12 +11,16 @@ const SUB_COLOR = '#2b2d31';
 let FONT_FAMILY = 'sans-serif';
 let FONT_FAMILY_BOLD = 'sans-serif';
 try {
-  const fontPath = path.join(__dirname, '유한킴벌리_푸른숲체 Bold.ttf');
+  const fontPath = path.join(__dirname, 'fonts.ttf');
 
-if (fs.existsSync(fontPath)) {
-    GlobalFonts.registerFromPath(fontPath, 'Yuhan');
-    FONT_FAMILY = 'Yuhan';
-    FONT_FAMILY_BOLD = 'Yuhan';
+const ok = GlobalFonts.registerFromPath(fontPath, 'Yuhan');
+console.log("폰트 등록:", ok);
+
+if (ok) {
+    FONT_FAMILY = "Yuhan";
+    FONT_FAMILY_BOLD = "Yuhan";
+} else {
+    console.log("폰트 등록 실패");
 }
 } catch (e) {
   console.warn('[card.js] 폰트 로드 실패, 기본 폰트로 대체합니다.', e.message);
